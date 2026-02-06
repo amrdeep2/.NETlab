@@ -1,0 +1,128 @@
+﻿@model lab2.Models.Lab2ViewModel
+@{
+    ViewData["Title"] = "Lab 2";
+}
+
+<style>
+    :root{
+        --bg:#f3f4f6;
+        --card:#ffffff;
+        --text:#111827;
+        --muted:#6b7280;
+        --accent:#2563eb;
+        --border:#e5e7eb;
+        --shadow:0 12px 30px rgba(0,0,0,0.08);
+        --radius:14px;
+    }
+    body{ background:var(--bg); }
+    .wrap{
+        max-width:980px;
+        margin:55px auto;
+        padding:0 16px;
+        font-family:"Segoe UI",Tahoma,sans-serif;
+        color:var(--text);
+    }
+    .card{
+        background:var(--card);
+        border:1px solid var(--border);
+        border-radius:var(--radius);
+        box-shadow:var(--shadow);
+        overflow:hidden;
+    }
+    .top{
+        padding:26px;
+        border-bottom:1px solid var(--border);
+        background:linear-gradient(135deg, rgba(37,99,235,0.10), transparent);
+    }
+    .top h1{ margin:0; font-size:2rem; }
+    .top p{ margin:8px 0 0; color:var(--muted); }
+
+    .content{ padding:26px; display:grid; gap:18px; }
+
+    .grid{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:14px;
+    }
+    
+    }
+
+    .box{
+        background:#fafafa;
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:14px 16px;
+    }
+    .label{ color:var(--muted); font-size:.85rem; margin-bottom:6px; }
+    .value{ font-weight:700; }
+
+    .section{
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:16px;
+        background:#fff;
+    }
+    .section h2{ margin:0 0 10px; color:var(--accent); font-size:1.15rem; }
+    .section p{ margin:0; line-height:1.65; color:#374151; }
+
+    .qa{ display:grid; gap:12px; }
+    .qa-item{
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:14px 16px;
+        background:#fcfcfc;
+    }
+    .q{ margin:0 0 8px; font-weight:800; }
+    .a{ margin:0; line-height:1.65; color:#374151; }
+</style>
+
+<div class="wrap">
+    <div class="card">
+        <div class="top">
+            <h1>@Model.Header</h1>
+            <p>ASP.NET Core MVC Lab 2</p>
+        </div>
+
+        <div class="content">
+
+            <div class="grid">
+                <div class="box">
+                    <div class="label">Name</div>
+                    <div class="value">@Model.FullName</div>
+                </div>
+                <div class="box">
+                    <div class="label">Student Number</div>
+                    <div class="value">@Model.StudentNumber</div>
+                </div>
+                <div class="box">
+                    <div class="label">Student Email</div>
+                    <div class="value">@Model.StudentEmailMasked</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>About Me</h2>
+                <p>@Model.AboutParagraph</p>
+            </div>
+
+            <div class="section">
+                <h2>Course Expectations</h2>
+                <p>@Model.CourseExpectationsParagraph</p>
+            </div>
+
+            <div class="section">
+                <h2>Questions & Answers</h2>
+                <div class="qa">
+                    @foreach (var qa in Model.QuestionsAndAnswers)
+                    {
+                            <div class="qa-item">
+                                <p class="q">@qa.Question</p>
+                                <p class="a">@qa.Answer</p>
+                            </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
